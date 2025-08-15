@@ -5,7 +5,8 @@ import Navbar from '@/components/common/Navbar';
 
 import Home from '@/pages/Home';
 import Blogs from '@/pages/Blogs';
-import History from '@/pages/History';
+import About from '@/pages/About';
+// import History from '@/pages/History';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import DashboardPage from '@/pages/DashboardPage';
@@ -19,7 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/Aboutus" element={<About />} />
+          {/* <Route path="/history" element={<History />} /> */}
           <Route path="/admin/login" element={<LoginPage />} />
           <Route path="/admin/register" element={<RegisterPage />} />
 

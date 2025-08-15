@@ -1,70 +1,54 @@
-import { useEffect, useState } from 'react';
-import axios from '@/utils/axiosInstance';
-import { Card, CardContent } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+// src/pages/Blogs.jsx
+import React from 'react';
 
-const BlogsPage = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+const blogs = [
+  {
+    id: 1,
+    date: '12 JUL',
+    category: 'WEC',
+    title: 'THE 499PS IN ACTION IN SÃO PAULO',
+    image: 'https://www.ferrari.com/images/2024/07/12/499p-wec-saopaulo.jpg', // Replace with real URL
+  },
+  {
+    id: 2,
+    date: '09 JUL',
+    category: 'WEC',
+    title: 'COMMENTS IN THE RUN-UP TO THE 6 HOURS OF SÃO PAULO',
+    image: 'https://www.ferrari.com/images/2024/07/09/499p-team-photo.jpg',
+  },
+  {
+    id: 3,
+    date: '08 JUL',
+    category: 'HYPERCAR',
+    title: 'GIOVINAZZI RENEWS HIS CONTRACT WITH FERRARI',
+    image: 'https://www.ferrari.com/images/2024/07/08/giovinazzi.jpg',
+  },
+  // Add more blogs here...
+];
 
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const { data: res } = await axios.get('/blogs');
-        console.log('Fetched blogs:', res);
-        setBlogs(res.data || []);
-      } catch (err) {
-        setError('Failed to fetch blogs. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+export default function Blogs() {
+  return (
+    <div className="bg-white min-h-screen py-10 px-6 md:px-16">
+      <h1 className="text-4xl font-bold mb-8 text-center uppercase">Latest Blogs</h1>
 
-    fetchBlogs();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="p-6 grid gap-4">
-        {[1, 2, 3].map((i) => (
-          <Skeleton key={i} className="h-32 w-full rounded-xl" />
+      <div className="grid md:grid-cols-3 gap-8">
+        {blogs.map((blog) => (
+          <div
+            key={blog.id}
+            className="bg-white shadow-lg border rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
+          >
+            <img src={blog.image} alt={blog.title} className="w-full h-56 object-cover" />
+            <div className="p-4">
+              <p className="text-red-600 font-semibold text-sm">
+                {blog.date} <span className="mx-2">|</span> {blog.category}
+              </p>
+              <h2 className="text-lg font-bold mt-2 hover:text-red-600 transition-colors cursor-pointer">
+                {blog.title}
+              </h2>
+            </div>
+          </div>
         ))}
       </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="p-6">
-        <Alert variant="destructive">
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      </div>
-    );
-  }
-
-  return (
-    <div className="p-6 grid gap-6">
-      {blogs.length === 0 ? (
-        <p className="text-muted-foreground">No blogs available yet.</p>
-      ) : (
-        blogs.map((blog) => (
-          <Card key={blog.id} className="shadow">
-            <CardContent className="py-6">
-              <h2 className="text-2xl font-semibold">{blog.title}</h2>
-              <p className="text-muted-foreground mt-2">{blog.content}</p>
-              <p className="text-sm mt-4 text-right text-gray-500">
-                By {blog.author || 'Admin'} • {new Date(blog.created_at).toLocaleDateString()}
-              </p>
-            </CardContent>
-          </Card>
-        ))
-      )}
     </div>
   );
-};
-
-export default BlogsPage;
+}
