@@ -15,7 +15,7 @@ export default function Navbar() {
       {/* Menu - aligned to right */}
       <div className="hidden md:flex space-x-10 lg:space-x-14 font-bold tracking-wider">
         <a
-          href="#"
+          href="/"
           className="text-blue-600 text-lg uppercase italic hover:text-black transition-all duration-200"
         >
           Home
@@ -27,10 +27,10 @@ export default function Navbar() {
           Blogs
         </a>
         <a
-          href="#"
+          href="/history"
           className="text-blue-600 text-lg uppercase italic hover:text-black transition-all duration-200"
         >
-          Teams
+          History
         </a>
         <a
           href="/Aboutus"
@@ -39,7 +39,7 @@ export default function Navbar() {
           About
         </a>
         <a
-          href="#"
+          href="/contact"
           className="text-blue-600 text-lg uppercase italic hover:text-black transition-all duration-200"
         >
           Contact

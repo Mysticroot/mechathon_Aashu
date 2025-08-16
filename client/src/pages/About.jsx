@@ -1,59 +1,77 @@
-// src/pages/About.jsx
-export default function About() {
+// src/pages/AboutUs.jsx
+import React from 'react';
+
+export default function AboutUs() {
+  const pillars = [
+    {
+      title: 'Innovation & Engineering',
+      description:
+        'Participants design and build buggies that are fast, efficient, safe, and technically sound.',
+    },
+    {
+      title: 'Sustainability & Responsibility',
+      description:
+        'We encourage energy-efficient designs and responsible material use throughout the competition.',
+    },
+    {
+      title: 'Learning & Development',
+      description:
+        'Hands-on experience in engineering, teamwork, and problem-solving is central to every challenge.',
+    },
+    {
+      title: 'Community & Passion',
+      description:
+        'Mechathon connects students, professionals, and motorsport enthusiasts in a shared learning and competitive environment.',
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-gray-800">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-black text-white py-20 px-6 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">About Us</h1>
-        <p className="max-w-2xl mx-auto text-lg text-gray-200">
-          Passion. Speed. Innovation. That’s what drives us at Nemesis Racing.
+      <div className="relative h-80 md:h-96 overflow-hidden">
+        <img
+          src="/images/buggy-hero.jpg" // Replace with your hero image
+          alt="Mechathon Buggy Competition"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center px-4">
+          <h1 className="text-3xl md:text-4xl text-white font-bold text-center">
+            About Mechathon Buggy Competition
+          </h1>
+        </div>
+      </div>
+
+      {/* Introduction */}
+      <div className="max-w-3xl mx-auto px-6 md:px-0 py-12 text-center">
+        <p className="text-gray-700 text-lg leading-relaxed">
+          Mechathon is a platform where engineering students and motorsport enthusiasts come
+          together to design, build, and race buggies. We combine learning, innovation, and
+          competition to inspire the next generation of engineers.
         </p>
-      </section>
+      </div>
 
-      {/* Content Section */}
-      <section className="max-w-6xl mx-auto py-16 px-6 grid md:grid-cols-2 gap-12 items-center">
-        {/* Left: Image */}
-        <div>
-          <img
-            src="https://images.unsplash.com/photo-1502877338535-766e1452684a"
-            alt="Nemesis Racing"
-            className="rounded-2xl shadow-lg"
-          />
-        </div>
+      {/* Pillars */}
+      <div className="max-w-5xl mx-auto px-6 md:px-0 py-12 grid md:grid-cols-2 gap-8">
+        {pillars.map((pillar, idx) => (
+          <div
+            key={idx}
+            className="bg-white shadow rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <h3 className="text-xl font-bold mb-2 text-red-600">{pillar.title}</h3>
+            <p className="text-gray-700">{pillar.description}</p>
+          </div>
+        ))}
+      </div>
 
-        {/* Right: Text */}
-        <div>
-          <h2 className="text-3xl font-bold mb-4">Who We Are</h2>
-          <p className="mb-6 leading-relaxed">
-            We are a team of enthusiasts dedicated to pushing the boundaries of racing technology
-            and performance. From designing aerodynamic vehicles to perfecting pit-stop strategies,
-            every detail matters.
-          </p>
-          <h3 className="text-xl font-semibold mb-3">Our Mission</h3>
-          <p className="mb-6 leading-relaxed">
-            To bring innovation and excitement to the racing world, while inspiring the next
-            generation of engineers and drivers.
-          </p>
-          <h3 className="text-xl font-semibold mb-3">Our Values</h3>
-          <ul className="list-disc list-inside space-y-2">
-            <li>Innovation in design and performance</li>
-            <li>Teamwork and dedication</li>
-            <li>Passion for motorsports</li>
-            <li>Continuous learning and growth</li>
-          </ul>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-gray-100 py-12 text-center">
-        <h2 className="text-2xl font-bold mb-4">Want to join our journey?</h2>
-        <a
-          href="/contact"
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-black transition-colors"
-        >
-          Contact Us
-        </a>
-      </section>
+      {/* Commitment */}
+      <div className="max-w-3xl mx-auto px-6 md:px-0 py-12 text-center">
+        <h2 className="text-2xl font-bold mb-4">Our Commitment</h2>
+        <p className="text-gray-700 leading-relaxed">
+          We aim to provide an unforgettable experience blending education, innovation, and
+          competition. Every year, we push participants to learn, innovate, and perform at their
+          best on and off the track.
+        </p>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 // src/pages/Blogs.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const blogs = [
   {
@@ -7,7 +8,7 @@ const blogs = [
     date: '12 JUL',
     category: 'WEC',
     title: 'THE 499PS IN ACTION IN SÃO PAULO',
-    image: 'https://www.ferrari.com/images/2024/07/12/499p-wec-saopaulo.jpg', // Replace with real URL
+    image: 'https://www.ferrari.com/images/2024/07/12/499p-wec-saopaulo.jpg',
   },
   {
     id: 2,
@@ -33,8 +34,9 @@ export default function Blogs() {
 
       <div className="grid md:grid-cols-3 gap-8">
         {blogs.map((blog) => (
-          <div
+          <Link
             key={blog.id}
+            to={`/blogs/${blog.id}`}
             className="bg-white shadow-lg border rounded-lg overflow-hidden hover:shadow-xl transition-shadow"
           >
             <img src={blog.image} alt={blog.title} className="w-full h-56 object-cover" />
@@ -42,11 +44,11 @@ export default function Blogs() {
               <p className="text-red-600 font-semibold text-sm">
                 {blog.date} <span className="mx-2">|</span> {blog.category}
               </p>
-              <h2 className="text-lg font-bold mt-2 hover:text-red-600 transition-colors cursor-pointer">
+              <h2 className="text-lg font-bold mt-2 hover:text-red-600 transition-colors">
                 {blog.title}
               </h2>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

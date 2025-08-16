@@ -1,80 +1,62 @@
-// import { useEffect, useState } from 'react';
-// import axios from '@/utils/axiosInstance';
-// import { Card, CardContent } from '@/components/ui/card';
-// import { Skeleton } from '@/components/ui/skeleton';
-// import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+// src/pages/History.jsx
+import React from 'react';
 
-// const HistoryPage = () => {
-//   const [history, setHistory] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState('');
+const historyData = [
+  {
+    year: '2024',
+    title: 'Mechathon Buggy Competition 2024',
+    subtitle: 'Innovation & Speed on Track',
+    description:
+      'The 2024 competition saw 20 teams competing with innovative buggy designs. The winners excelled in speed, efficiency, and technical design, pushing the boundaries of student engineering.',
+  },
+  {
+    year: '2023',
+    title: 'Mechathon Buggy Competition 2023',
+    subtitle: 'Engineering Meets Creativity',
+    description:
+      'In 2023, students showcased their creativity and technical skills in buggy design and racing. Safety, teamwork, and problem-solving were the key highlights.',
+  },
+  {
+    year: '2022',
+    title: 'Mechathon Buggy Competition 2022',
+    subtitle: 'First Edition – Building the Future',
+    description:
+      'The inaugural Mechathon Buggy Competition in 2022 was a milestone event, inspiring students to apply their engineering knowledge to real-world racing challenges.',
+  },
+  // Add more years as needed
+];
 
-//   useEffect(() => {
-//     const fetchHistory = async () => {
-//       try {
-//         const { data: res } = await axios.get('/history');
-//         console.log('Fetched history:', res);
-//         setHistory(res.data || []);
-//       } catch (err) {
-//         setError('Failed to fetch hackathon history.');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
+export default function History() {
+  return (
+    <div className="bg-gray-50 min-h-screen py-12 px-6 md:px-16">
+      <h1 className="text-4xl font-bold mb-12 text-center uppercase text-red-600">
+        Competition History
+      </h1>
 
-//     fetchHistory();
-//   }, []);
+      <div className="space-y-12">
+        {historyData.map((item, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-lg shadow-md overflow-hidden md:flex md:items-center hover:shadow-lg transition-shadow"
+          >
+            {/* Placeholder Box instead of Image */}
+            <div className="md:w-1/3 flex items-center justify-center bg-red-100 h-64 md:h-full">
+              <span className="text-gray-500 text-xl font-bold">{item.year || 'Year'}</span>
+            </div>
 
-//   if (loading) {
-//     return (
-//       <div className="p-6 grid gap-4">
-//         {[1, 2].map((i) => (
-//           <Skeleton key={i} className="h-32 w-full rounded-xl" />
-//         ))}
-//       </div>
-//     );
-//   }
-
-//   if (error) {
-//     return (
-//       <div className="p-6">
-//         <Alert variant="destructive">
-//           <AlertTitle>Error</AlertTitle>
-//           <AlertDescription>{error}</AlertDescription>
-//         </Alert>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="p-6 grid gap-6">
-//       {history.length === 0 ? (
-//         <p className="text-muted-foreground">No hackathon history found.</p>
-//       ) : (
-//         history.map((entry) => (
-//           <Card key={entry.id} className="shadow-md">
-//             <CardContent className="py-6 space-y-2">
-//               <h2 className="text-xl font-semibold">{entry.title}</h2>
-//               <p className="text-muted-foreground text-sm">Year: {entry.year}</p>
-//               <p>
-//                 <span className="font-medium">Team:</span> {entry.team_name}
-//               </p>
-//               <p>
-//                 <span className="font-medium">Position:</span> #{entry.position}
-//               </p>
-//               <p>
-//                 <span className="font-medium">Project:</span> {entry.project_title}
-//               </p>
-//               <p className="text-sm text-gray-700">{entry.description}</p>
-//               <p className="text-xs text-gray-400 text-right">
-//                 Posted on {new Date(entry.created_at).toLocaleDateString()}
-//               </p>
-//             </CardContent>
-//           </Card>
-//         ))
-//       )}
-//     </div>
-//   );
-// };
-
-// export default HistoryPage;
+            {/* Text Content */}
+            <div className="md:w-2/3 p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-red-600 mb-2">
+                {item.title || 'Untitled Competition'}
+              </h2>
+              <h3 className="text-lg font-semibold text-gray-700 mb-4">{item.subtitle || ''}</h3>
+              <p className="text-gray-700 leading-relaxed">
+                {item.description || 'No description available.'}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

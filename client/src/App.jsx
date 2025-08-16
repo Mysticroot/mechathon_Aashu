@@ -2,16 +2,18 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { AuthProvider } from '@/context/AuthContext';
 import Navbar from '@/components/common/Navbar';
+import Footer from '@/components/common/Footer';
 
 import Home from '@/pages/Home';
 import Blogs from '@/pages/Blogs';
 import About from '@/pages/About';
-// import History from '@/pages/History';
+import History from '@/pages/History';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import DashboardPage from '@/pages/DashboardPage';
 import ProtectedRoute from '@/components/common/ProtectedRoute';
-
+import BlogDetails from '@/components/Blogs/BlogDetails';
+import Contact from '@/pages/Contact';
 function App() {
   return (
     <AuthProvider>
@@ -20,8 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:id" element={<BlogDetails />} />
           <Route path="/Aboutus" element={<About />} />
-          {/* <Route path="/history" element={<History />} /> */}
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/history" element={<History />} />
           <Route path="/admin/login" element={<LoginPage />} />
           <Route path="/admin/register" element={<RegisterPage />} />
 
@@ -52,6 +56,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer/>
       </Router>
     </AuthProvider>
   );
