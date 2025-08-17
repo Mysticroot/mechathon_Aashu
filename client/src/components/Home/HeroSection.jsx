@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {  AnimatePresence } from 'framer-motion';
-import {  motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // added icons
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import race1 from '../../images/race1.jpg';
 import race2 from '../../images/race2.jpg';
 import race3 from '../../images/race3.jpg';
@@ -11,14 +10,14 @@ const images = [race1, race2, race3];
 export default function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [activeBtn, setActiveBtn] = useState(null); // track clicked button
+  const [activeBtn, setActiveBtn] = useState(null);
   const intervalRef = useRef(null);
 
   const startAutoSlide = () => {
     stopAutoSlide();
     intervalRef.current = setInterval(() => {
       handleSlide('next', false);
-    }, 4000);
+    }, 3500); // smoother timing (slightly longer)
   };
 
   const stopAutoSlide = () => {
@@ -33,7 +32,7 @@ export default function HeroSection() {
 
     if (clicked) {
       setActiveBtn(type);
-      startAutoSlide(); // restart timer
+      startAutoSlide();
     }
   };
 
@@ -41,6 +40,27 @@ export default function HeroSection() {
     startAutoSlide();
     return stopAutoSlide;
   }, []);
+
+  // Motion variants for smoother effect
+  const variants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 80 : -80,
+      opacity: 0,
+      scale: 1.05,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: [0.25, 0.8, 0.25, 1] }, // smoother curve
+    },
+    exit: (direction) => ({
+      x: direction < 0 ? 80 : -80,
+      opacity: 0,
+      scale: 0.95,
+      transition: { duration: 0.8 },
+    }),
+  };
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -52,10 +72,10 @@ export default function HeroSection() {
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${images[currentImage]})` }}
             custom={direction}
-            initial={{ x: direction === 1 ? '100%' : '-100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: direction === 1 ? '-100%' : '100%' }}
-            transition={{ duration: 0.8, ease: 'easeInOut' }}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
           />
         </AnimatePresence>
       </div>
@@ -105,7 +125,7 @@ export default function HeroSection() {
           <div
             key={index}
             className={`w-3 h-3 rounded-full transition-all ${
-              index === currentImage ? 'bg-blue-500' : 'bg-gray-400'
+              index === currentImage ? 'bg-blue-500 scale-110' : 'bg-gray-400'
             }`}
           />
         ))}

@@ -30,16 +30,20 @@ export default function HistorySection() {
         </div>
 
         {/* Right Images */}
-        <div className="md:w-1/2 flex justify-center relative">
+        <div className="md:w-1/2 flex justify-center relative group">
           <img
             src="/images/mbr34-1.jpg"
             alt="MBR34 Side View"
-            className="w-80 h-56 object-cover shadow-lg transform rotate-[-3deg] relative z-10"
+            className="w-80 h-56 object-cover shadow-lg transform rotate-[-3deg] relative z-10 
+                       transition-all duration-500 group-hover:scale-105 group-hover:-translate-x-6 
+                       group-hover:shadow-[0_0_25px_rgba(59,130,246,0.7)]"
           />
           <img
             src="/images/mbr34-2.jpg"
             alt="MBR34 Action Shot"
-            className="w-80 h-56 object-cover shadow-lg absolute top-10 left-10 transform rotate-[3deg]"
+            className="w-80 h-56 object-cover shadow-lg absolute top-10 left-10 transform rotate-[3deg] 
+                       transition-all duration-500 group-hover:scale-105 group-hover:translate-x-6 
+                       group-hover:shadow-[0_0_25px_rgba(239,68,68,0.7)]"
           />
         </div>
       </div>

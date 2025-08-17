@@ -118,3 +118,18 @@
     @apply bg-background text-foreground;
   }
 }
+@keyframes slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* move half since we duplicated sponsors */
+}
+
+.animate-slide {
+  display: flex;
+  width: max-content;
+  animation: slide 20s linear infinite;
+}
+
+/* Pause when hovering */
+.animate-slide:hover {
+  animation-play-state: paused;
+}

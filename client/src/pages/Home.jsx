@@ -1,20 +1,19 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import HeroSection from '../components/Home/HeroSection';
-import BlogsSection from '../components/Blogs/BlogsSection'; 
+import BlogsSection from '../components/Blogs/BlogsSection';
 import HistorySection from '@/components/History/HistorySection';
-import SponserSection from '../components/Sponsers/SponserSection'; // Assuming you have a SponserSection component
+import SponserSection from '../components/Sponsers/SponserSection';
 
 const HomePage = () => {
   return (
-    <div className="p-6 space-y-12">
-      {/* Hero Section */}
-     <HeroSection />
+    <div>
+      {/* Hero Section - full width */}
+      <HeroSection />
 
+      {/* Other sections also full width */}
       <BlogsSection />
-
-      <HistorySection/>
-
+      <HistorySection />
       <SponserSection />
     </div>
   );
