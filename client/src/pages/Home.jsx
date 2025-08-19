@@ -3,18 +3,22 @@ import React from 'react';
 import HeroSection from '../components/Home/HeroSection';
 import BlogsSection from '../components/Blogs/BlogsSection';
 import HistorySection from '@/components/History/HistorySection';
-import SponserSection from '../components/Sponsers/SponserSection';
+import SponsorsSection from '../components/Sponsers/SponserSection';
 
 const HomePage = () => {
   return (
-    <div>
-      {/* Hero Section - full width */}
+    <div className="bg-[#0E0E0E] text-white font-sans">
+      {/* Hero Section */}
       <HeroSection />
 
-      {/* Other sections also full width */}
+      {/* Blog */}
       <BlogsSection />
+
+      {/* History */}
       <HistorySection />
-      <SponserSection />
+
+      {/* Sponsors */}
+      <SponsorsSection />
     </div>
   );
 };

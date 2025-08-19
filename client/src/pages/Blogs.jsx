@@ -30,18 +30,26 @@ const blogs = [
 
 export default function Blogs() {
   return (
-    <div className="bg-[#0A1F44] min-h-screen py-12 px-6 md:px-16 text-white pt-24">
+    <div className="bg-[#0A1F44] min-h-screen py-12 px-6 md:px-16 text-white pt-32">
       {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-extrabold mb-12 text-center uppercase 
-                   text-transparent bg-clip-text 
-                   bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8] 
-                   tracking-wide"
+        className="relative block w-fit mx-auto 
+             text-4xl md:text-5xl font-extrabold mb-18 uppercase 
+             text-transparent bg-clip-text 
+             bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8]
+             tracking-wide italic transform -skew-x-6 text-center"
       >
         Latest Blogs
+        {/* Racing stripe underline */}
+        <span
+          className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] 
+               w-3/4 h-[4px] 
+               bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8] 
+               skew-x-12 rounded-full"
+        ></span>
       </motion.h1>
 
       {/* Blog Cards */}

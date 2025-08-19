@@ -26,9 +26,25 @@ export default function ContactUs() {
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F44]/90 to-[#1A73E8]/70"></div>
-        <h1 className="relative text-4xl md:text-5xl font-extrabold tracking-wider text-white drop-shadow-lg">
-          Contact <span className="text-[#FF5C00]">Nemesis</span>
-        </h1>
+        <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="relative block w-fit mx-auto 
+                     text-4xl md:text-5xl font-extrabold mb-18 uppercase 
+                     text-transparent bg-clip-text 
+                     bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8]
+                     tracking-wide italic transform -skew-x-6 text-center"
+              >
+                contact nemesis
+                {/* Racing stripe underline */}
+                <span
+                  className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] 
+                       w-3/4 h-[4px] 
+                       bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8] 
+                       skew-x-12 rounded-full"
+                ></span>
+              </motion.h1>
       </div>
 
       {/* Contact Info & Form */}

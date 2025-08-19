@@ -41,15 +41,25 @@ export default function AboutUs() {
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A1F44]/80 to-[#2A2D34]/70 flex items-center justify-center px-4">
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-4xl md:text-5xl font-extrabold text-center 
-                       bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#C3F73A] bg-clip-text text-transparent drop-shadow-lg uppercase"
-          >
-            About Nemesis Racing Club
-          </motion.h1>
+         <motion.h1
+                 initial={{ opacity: 0, y: -20 }}
+                 animate={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.6 }}
+                 className="relative block w-fit mx-auto 
+                      text-4xl md:text-5xl font-extrabold mb-18 uppercase 
+                      text-transparent bg-clip-text 
+                      bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8]
+                      tracking-wide italic transform -skew-x-6 text-center"
+               >
+                 about nemesis racing
+                 {/* Racing stripe underline */}
+                 <span
+                   className="absolute left-1/2 -translate-x-1/2 bottom-[-10px] 
+                        w-3/4 h-[4px] 
+                        bg-gradient-to-r from-[#1A73E8] via-[#3DF5FF] to-[#1A73E8] 
+                        skew-x-12 rounded-full"
+                 ></span>
+               </motion.h1>
         </div>
       </div>
 

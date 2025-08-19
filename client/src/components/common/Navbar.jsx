@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import logo from "../auth/nemesis-logo (2).png";
-import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import React, { useState, useEffect } from 'react';
+import logo from '../auth/nemesis-logo (2).png';
+import { Link, useLocation } from 'react-router-dom'; // ⬅️ add useLocation
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showNavbar, setShowNavbar] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
+
+  const location = useLocation(); // ⬅️ get current route
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -27,9 +29,11 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
+
+  const navItems = ['Home', 'Blogs', 'History', 'About', 'Contact'];
 
   return (
     <nav
@@ -45,17 +49,24 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center pt-1 space-x-8 lg:space-x-12 font-bold tracking-wider">
-          {['Home', 'Blogs', 'History', 'About', 'Contact'].map((item, idx) => (
-            <Link
-              key={idx}
-              to={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`}
-              className={`text-base uppercase italic transition-all duration-300 ${
-                isAtTop ? 'text-white hover:text-[#0047FF]' : 'text-white hover:text-[#0047FF]'
-              }`}
-            >
-              {item}
-            </Link>
-          ))}
+          {navItems.map((item, idx) => {
+            const path = `/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`;
+            const isActive = location.pathname === path;
+
+            return (
+              <Link
+                key={idx}
+                to={path}
+                className={`text-base uppercase italic transition-all duration-300 ${
+                  isActive
+                    ? 'text-[#3DF5FF] underline underline-offset-4' // active style
+                    : 'text-white hover:text-[#0047FF]'
+                }`}
+              >
+                {item}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Mobile Hamburger */}
@@ -80,18 +91,27 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Nav Links (top but centered horizontally) */}
+          {/* Nav Links */}
           <div className="flex flex-col items-center space-y-6 font-bold tracking-wider mt-8">
-            {['Home', 'Blogs', 'History', 'About', 'Contact'].map((item, idx) => (
-              <Link
-                key={idx}
-                to={`/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`}
-                onClick={() => setIsOpen(false)}
-                className="text-white text-lg uppercase italic hover:text-[#0047FF] transition-all duration-200"
-              >
-                {item}
-              </Link>
-            ))}
+            {navItems.map((item, idx) => {
+              const path = `/${item.toLowerCase() === 'home' ? '' : item.toLowerCase()}`;
+              const isActive = location.pathname === path;
+
+              return (
+                <Link
+                  key={idx}
+                  to={path}
+                  onClick={() => setIsOpen(false)}
+                  className={`text-lg uppercase italic transition-all duration-200 ${
+                    isActive
+                      ? 'text-[#3DF5FF] underline underline-offset-4'
+                      : 'text-white hover:text-[#0047FF]'
+                  }`}
+                >
+                  {item}
+                </Link>
+              );
+            })}
           </div>
         </div>
       )}
