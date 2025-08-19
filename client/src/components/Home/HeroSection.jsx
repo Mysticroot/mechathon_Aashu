@@ -17,7 +17,7 @@ export default function HeroSection() {
     stopAutoSlide();
     intervalRef.current = setInterval(() => {
       handleSlide('next', false);
-    }, 3500); // smoother timing (slightly longer)
+    }, 4000);
   };
 
   const stopAutoSlide = () => {
@@ -41,7 +41,6 @@ export default function HeroSection() {
     return stopAutoSlide;
   }, []);
 
-  // Motion variants for smoother effect
   const variants = {
     enter: (direction) => ({
       x: direction > 0 ? 80 : -80,
@@ -52,7 +51,7 @@ export default function HeroSection() {
       x: 0,
       opacity: 1,
       scale: 1,
-      transition: { duration: 1, ease: [0.25, 0.8, 0.25, 1] }, // smoother curve
+      transition: { duration: 1, ease: [0.25, 0.8, 0.25, 1] },
     },
     exit: (direction) => ({
       x: direction < 0 ? 80 : -80,
@@ -64,19 +63,20 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Sliding images */}
+      {/* Background Images */}
       <div className="absolute inset-0">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentImage}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${images[currentImage]})` }}
+            className="absolute inset-0"
             custom={direction}
             variants={variants}
             initial="enter"
             animate="center"
             exit="exit"
-          />
+          >
+            <img src={images[currentImage]} alt="slide" className="w-full h-full object-cover" />
+          </motion.div>
         </AnimatePresence>
       </div>
 
@@ -84,49 +84,49 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-black/50"></div>
 
       {/* Text Content */}
-      <div className="relative z-10 flex flex-col items-start justify-end h-full px-6 lg:px-20 pb-20 text-white">
-        <h1 className="text-4xl md:text-6xl font-extrabold italic tracking-wide mb-4">
+      <div className="relative z-10 flex flex-col items-start justify-end h-full px-6 sm:px-10 lg:px-20 pb-12 sm:pb-16 lg:pb-20 text-white">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold italic tracking-wide mb-4 leading-tight">
           NEMESIS RACING
         </h1>
-        <p className="text-lg md:text-2xl max-w-xl mb-6 leading-relaxed">
+        <p className="text-sm sm:text-lg md:text-2xl max-w-lg md:max-w-2xl mb-6 leading-relaxed">
           Engineering adrenaline on wheels — pushing speed, style, and innovation to the next level.
         </p>
-        <a
-          href="#about"
-          className="bg-blue-600 hover:bg-blue-800 transition-all px-6 py-3 text-lg font-bold uppercase tracking-wide rounded"
-        >
-          Discover More
-        </a>
       </div>
 
-      {/* Navigation buttons */}
-      <div className="absolute bottom-6 right-6 z-30 flex gap-2">
+      {/* Navigation Arrows */}
+      <div className="absolute bottom-6 right-6 z-30 flex gap-3">
         <button
           onClick={() => handleSlide('prev')}
-          className={`p-3 transition-all ${
-            activeBtn === 'prev' ? 'bg-black' : 'bg-blue-600'
-          } hover:bg-blue-800 text-white`}
+          className={`p-2 sm:p-3 transition-all touch-manipulation ${
+            activeBtn === 'prev' ? 'bg-[#0A0A0A]' : 'bg-[#0047FF]'
+          } hover:bg-[#0A0A0A] text-white`} // removed 'rounded'
         >
-          <ChevronLeft className="w-6 h-6" />
+          <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
+
         <button
           onClick={() => handleSlide('next')}
-          className={`p-3 transition-all ${
-            activeBtn === 'next' ? 'bg-black' : 'bg-blue-600'
-          } hover:bg-blue-800 text-white`}
+          className={`p-2 sm:p-3 transition-all touch-manipulation ${
+            activeBtn === 'next' ? 'bg-[#0A0A0A]' : 'bg-[#0047FF]'
+          } hover:bg-[#0A0A0A] text-white`} // removed 'rounded'
         >
-          <ChevronRight className="w-6 h-6" />
+          <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
         {images.map((_, index) => (
           <div
             key={index}
-            className={`w-3 h-3 rounded-full transition-all ${
-              index === currentImage ? 'bg-blue-500 scale-110' : 'bg-gray-400'
+            className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all cursor-pointer ${
+              index === currentImage ? 'bg-[#0047FF] scale-110' : 'bg-gray-400'
             }`}
+            onClick={() => {
+              setCurrentImage(index);
+              setDirection(index > currentImage ? 1 : -1);
+              startAutoSlide();
+            }}
           />
         ))}
       </div>

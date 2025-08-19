@@ -1,5 +1,6 @@
 // src/components/home/BlogSection.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BlogSection() {
   const sections = [
@@ -32,7 +33,7 @@ export default function BlogSection() {
     },
     {
       title: 'Shaping Tomorrow',
-      text: `Our focus isn’t just today—it’s about preparing for the future. We actively invest
+      text: `Our focus isn't just today—it's about preparing for the future. We actively invest
         in research, sustainable solutions, and empowering young engineers to take the lead.`,
       subText: `Through collaboration, knowledge-sharing, and real-world problem solving, we are
         building a legacy of innovation and impact for the generations to come.`,
@@ -46,47 +47,62 @@ export default function BlogSection() {
   ];
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-12 sm:py-16 bg-[#0A0A0A]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-12 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-gray-900">Latest from Our Blog</h2>
-        <button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-black transition-colors">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-12 px-4 sm:px-6 max-w-6xl mx-auto gap-4">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white">Latest from Our Blog</h2>
+        <Link
+          to="/blogs"
+          className="px-4 py-2 bg-[#0047FF] text-white hover:bg-white hover:text-[#0A0A0A] transition-colors duration-300 font-semibold uppercase tracking-wide shadow-md inline-block text-center rounded-md"
+        >
           View All
-        </button>
+        </Link>
       </div>
 
       {/* Alternating Sections */}
-      <div className="space-y-20">
+      <div className="space-y-16 sm:space-y-20">
         {sections.map((sec, idx) => (
           <div
             key={idx}
-            className={`max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center px-6 ${
+            className={`max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-center px-4 sm:px-6 ${
               idx % 2 === 1 ? 'md:grid-flow-col-dense' : ''
             }`}
           >
             {/* Text */}
-            <div className={`${idx % 2 === 1 ? 'md:col-start-2' : ''}`}>
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">{sec.title}</h3>
-              <p className="text-gray-600 text-base leading-relaxed mb-6">{sec.text}</p>
-              <p className="text-gray-600 text-base leading-relaxed mb-8">{sec.subText}</p>
-              <div className="grid grid-cols-2 gap-6">
+            <div className={`${idx % 2 === 1 ? 'md:col-start-2' : ''} order-2 md:order-1`}>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6">{sec.title}</h3>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6">
+                {sec.text}
+              </p>
+              <p className="text-gray-400 text-sm sm:text-base leading-relaxed mb-6 sm:mb-8">
+                {sec.subText}
+              </p>
+              <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 {sec.stats.map((s, i) => (
                   <div className="text-center" key={i}>
-                    <div className="text-3xl font-bold text-blue-600 mb-2">{s.value}</div>
-                    <div className="text-sm text-gray-500">{s.label}</div>
+                    <div className="text-2xl sm:text-3xl font-bold text-[#0047FF] mb-2">
+                      {s.value}
+                    </div>
+                    <div className="text-xs sm:text-sm text-gray-400 uppercase tracking-wide">
+                      {s.label}
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Image */}
-            <div className="flex justify-center">
+            <div
+              className={`flex justify-center order-1 md:order-2 ${
+                idx % 2 === 1 ? 'md:col-start-1' : ''
+              }`}
+            >
               <img
                 src={sec.image}
                 alt={sec.title}
-                className="shadow-xl mx-auto max-w-2xl object-cover 
-             [clip-path:polygon(8%_0,100%_0,92%_100%,0%_100%)] 
-             rounded-lg"
+                className="shadow-xl mx-auto w-full max-w-lg sm:max-w-2xl h-64 sm:h-80 object-cover 
+                  [clip-path:polygon(8%_0,100%_0,92%_100%,0%_100%)] 
+                  border-4 border-[#0047FF] rounded-md"
               />
             </div>
           </div>

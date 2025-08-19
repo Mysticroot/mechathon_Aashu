@@ -55,26 +55,26 @@ export default function BlogDetails() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Header Image */}
+    <div className="bg-white min-h-screen">
+      {/* Hero Image with Title */}
       {blog.mainImage && (
-        <div className="relative w-full h-96 md:h-[500px] overflow-hidden">
+        <div className="relative w-full h-[500px] md:h-[600px]">
           <img src={blog.mainImage} alt={blog.title} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <h1 className="text-3xl md:text-5xl text-white font-bold text-center px-4">
-              {blog.title}
-            </h1>
+          <div className="absolute inset-0 bg-black/40 flex items-end">
+            <div className="p-6 md:p-12 max-w-4xl">
+              <p className="text-red-500 font-semibold text-sm mb-2">
+                {blog.category} | {blog.date}
+              </p>
+              <h1 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+                {blog.title}
+              </h1>
+            </div>
           </div>
         </div>
       )}
 
       {/* Blog Content */}
       <div className="max-w-4xl mx-auto px-6 md:px-0 py-12">
-        {/* Category & Date */}
-        <p className="text-red-600 font-semibold text-sm mb-4">
-          {blog.category} | {blog.date}
-        </p>
-
         {/* Content Paragraphs */}
         <div className="space-y-6 text-gray-800 text-lg leading-relaxed">
           {blog.content.map((para, idx) => (
@@ -84,20 +84,20 @@ export default function BlogDetails() {
 
         {/* Optional Secondary Image */}
         {blog.secondaryImage && (
-          <div className="mt-8">
+          <div className="mt-10">
             <img
               src={blog.secondaryImage}
               alt={`${blog.title} secondary`}
-              className="w-full h-72 md:h-96 object-cover rounded-lg shadow-md"
+              className="w-full h-80 md:h-[500px] object-cover rounded-lg shadow-md"
             />
           </div>
         )}
 
         {/* Back to Blogs Button */}
-        <div className="mt-12">
+        <div className="mt-16 text-center">
           <Link
             to="/blogs"
-            className="inline-block px-6 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors"
+            className="inline-block px-8 py-3 bg-red-600 text-white font-semibold rounded-full hover:bg-red-700 transition-colors"
           >
             Back to Blogs
           </Link>
